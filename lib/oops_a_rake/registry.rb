@@ -15,5 +15,9 @@ module OopsARake
       @tasks[task_class] = task
       task
     end
+
+    def self.fetch(task_class)
+      @tasks.fetch(task_class)
+    end
   end
 end

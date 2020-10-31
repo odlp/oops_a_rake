@@ -29,6 +29,45 @@ RSpec.describe OopsARake::Task do
       .to output(/Hello Bob/).to_stdout
   end
 
+  it "supports configuring prerequsite Rake tasks" do
+    define_class("TaskOne") do
+      include OopsARake::Task
+
+      def call
+        puts self.class.name
+      end
+    end
+
+    define_class("TaskTwo") do
+      include OopsARake::Task
+
+      def call
+        puts self.class.name
+      end
+    end
+
+    define_class("TaskThree") do
+      include OopsARake::Task
+
+      prerequisites :task_one, :task_two
+
+      def call
+        puts self.class.name
+      end
+    end
+
+    task = Rake::Task["task_three"]
+
+    expect(task.prerequisites).to eq([:task_one, :task_two])
+    expect { task.invoke }.to output(
+      <<~TXT
+        TaskOne
+        TaskTwo
+        TaskThree
+      TXT
+    ).to_stdout
+  end
+
   private
 
   def define_class(name, &block)
