@@ -68,6 +68,19 @@ RSpec.describe OopsARake::Task do
     ).to_stdout
   end
 
+  it "allows tasks to be described" do
+    define_class("WellDocumentedTask") do
+      include OopsARake::Task
+
+      description "Informative"
+
+      def call
+      end
+    end
+
+    expect(Rake::Task["well_documented"].comment).to eq("Informative")
+  end
+
   private
 
   def define_class(name, &block)

@@ -8,6 +8,10 @@ module OopsARake
     end
 
     module ClassMethods
+      def description(description)
+        task.comment = description
+      end
+
       def prerequisites(*args)
         task.enhance(args)
       end
