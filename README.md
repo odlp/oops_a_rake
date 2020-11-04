@@ -174,4 +174,4 @@ class HardWorker
 end
 ```
 
-[testing-tasks]: (https://thoughtbot.com/blog/test-rake-tasks-like-a-boss)
+[testing-tasks]: https://thoughtbot.com/blog/test-rake-tasks-like-a-boss
