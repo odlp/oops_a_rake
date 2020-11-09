@@ -124,7 +124,7 @@ call a plain Ruby object, which is tested in isolation:
 
 ```ruby
 task :greeting do |_, args|
-  GreetingTask.new(*args).call
+  SomeObject.new(*args).call
 end
 ```
 
