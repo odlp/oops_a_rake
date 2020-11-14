@@ -6,9 +6,7 @@ module OopsARake
     @tasks = {}
 
     def self.register(task_class)
-      task_name = task_class.name.underscore.gsub("/", ":").delete_suffix("_task")
-
-      task = Rake::Task.define_task(task_name) do |_, args|
+      task = Rake::Task.define_task(task_class.task_name) do |_, args|
         task_class.new.call(*args)
       end
 
