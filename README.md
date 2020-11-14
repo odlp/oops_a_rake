@@ -110,6 +110,24 @@ Invocation:
 bundle exec rake admin:special
 ```
 
+### Task with a custom name
+
+```ruby
+class ObscureClassNameTask do
+  include OopsARake::Task.with_name("custom_name")
+
+  def call
+    puts "Hello"
+  end
+end
+```
+
+Invocation:
+
+```sh
+bundle exec rake custom_name
+```
+
 ## Motivation
 
 Rake is an omnipresent tool in the Ruby world. It has some drawbacks – the main
