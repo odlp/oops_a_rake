@@ -7,13 +7,13 @@ module OopsARake
       Registry::register(klass)
     end
 
-    def self.with_name(custom_task_name)
-      module_name = "#{custom_task_name.gsub(":", "_").classify}ClassMethods"
+    def self.with_options(name:)
+      module_name = "#{name.gsub(":", "_").classify}ClassMethods"
       mod = const_set(module_name, Module.new)
 
       mod.define_singleton_method(:included) do |klass|
-        klass.extend(OopsARake::Task::ClassMethods)
-        klass.define_singleton_method(:task_name) { custom_task_name }
+        klass.define_singleton_method(:task_name) { name }
+        klass.extend(ClassMethods)
         Registry::register(klass)
       end
 
@@ -22,7 +22,11 @@ module OopsARake
 
     module ClassMethods
       def task_name
-        name.underscore.gsub("/", ":").delete_suffix("_task")
+        if defined?(super)
+          super
+        else
+          name.underscore.gsub("/", ":").delete_suffix("_task")
+        end
       end
 
       def description(description)

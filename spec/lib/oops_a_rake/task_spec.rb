@@ -92,10 +92,10 @@ RSpec.describe OopsARake::Task do
     expect(Rake::Task["well_documented"].comment).to eq("Informative")
   end
 
-  describe "custom task name" do
+  describe "::with_options" do
     it "allows tasks to specify a custom name" do
       define_class("ObscureClassNameTask") do
-        include OopsARake::Task.with_name("clear_name")
+        include OopsARake::Task.with_options(name: "clear_name")
 
         def call
           puts "Hello"
@@ -108,7 +108,7 @@ RSpec.describe OopsARake::Task do
 
     it "provides access to the task name from the class" do
       define_class("ObscureClassNameTask") do
-        include OopsARake::Task.with_name("custom_name")
+        include OopsARake::Task.with_options(name: "custom_name")
 
         def call
         end
@@ -119,7 +119,7 @@ RSpec.describe OopsARake::Task do
 
     it "names the module" do
       define_class("ObscureClassNameTask") do
-        include OopsARake::Task.with_name("foo:bar_baz")
+        include OopsARake::Task.with_options(name: "foo:bar_baz")
 
         def call
         end
