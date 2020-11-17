@@ -114,7 +114,7 @@ bundle exec rake admin:special
 
 ```ruby
 class ObscureClassNameTask do
-  include OopsARake::Task.with_name("custom_name")
+  include OopsARake::Task.with_options(name: "custom_name")
 
   def call
     puts "Hello"
