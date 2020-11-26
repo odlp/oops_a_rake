@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    oops_a_rake (0.1.0)
+    oops_a_rake (0.2.0)
       activesupport (>= 5.2)
       rake (>= 12.0)
 
@@ -39,7 +39,7 @@ GEM
       rspec-support (~> 3.10.0)
     rspec-support (3.10.0)
     thread_safe (0.3.6)
-    tzinfo (1.2.7)
+    tzinfo (1.2.8)
       thread_safe (~> 0.1)
     zeitwerk (2.4.1)
 
