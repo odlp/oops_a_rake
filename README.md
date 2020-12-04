@@ -17,7 +17,7 @@ In your Rakefile, require `oops_a_rake` and require your tasks:
 
 require "oops_a_rake"
 
-Dir.glob("lib/tasks/*.rb").each { |task| require_relative(task) }
+Dir.glob("lib/tasks/**/*.rb").each { |task| require_relative(task) }
 ```
 
 ## Usage
@@ -113,7 +113,7 @@ bundle exec rake admin:special
 ### Task with a custom name
 
 ```ruby
-class ObscureClassNameTask do
+class ObscureClassNameTask
   include OopsARake::Task.with_options(name: "custom_name")
 
   def call
